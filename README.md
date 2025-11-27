@@ -1,11 +1,18 @@
-# Campus Library — Examen Git
+# Projet bibliothèque numérique
 
-Ce repository contient plusieurs branches avec du code pré-écrit.
+Serveur web en Go représentant une bibliothèque. Le site permet d'afficher la liste des livres avec différents champs. Elle permet d’afficher les informations d’un livre (titre, auteur, année). Le site possède aussi une page pour chaque livre permettant de les afficher individuellement.
 
-🎯 Votre objectif : reconstruire le projet final en utilisant **exclusivement Git** :
-- fork
-- pull requests
-- merges
-- résolution de conflits
-- tags
-- historique propre
+## Installation
+
+1. Cloner le repository : https://github.com/KinsleySC/exam-git-avance
+
+cd exam-git-avance
+
+2. Le projet utilise Go. Assurez-vous d'avoir Go installé.
+
+## Utilisation
+
+Lancer le serveur :
+go run main.go
+
+Le serveur démarre sur `http://localhost:8080`
