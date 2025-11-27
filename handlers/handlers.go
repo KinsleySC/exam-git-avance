@@ -3,7 +3,10 @@ package handlers
 import (
 	"html/template"
 	"net/http"
+<<<<<<< HEAD
 	"strconv"
+=======
+>>>>>>> origin/templates/home
     "main/data"
 )
 
@@ -13,6 +16,7 @@ var books = []data.Book{
     {3, "The Pragmatic Programmer", "Andrew Hunt", 1999},
 }
 
+<<<<<<< HEAD
 func BookHandler(w http.ResponseWriter, r *http.Request) {
     idStr := r.URL.Query().Get("id")
 
@@ -47,3 +51,9 @@ func ContactHandler(w http.ResponseWriter, r *http.Request) {
     tmpl := template.Must(template.ParseFiles("templates/contact.html"))
     tmpl.Execute(w, nil)
 }
+=======
+func HomeHandler(w http.ResponseWriter, r *http.Request) {
+    tmpl := template.Must(template.ParseFiles("templates/home.html"))
+    tmpl.Execute(w, books)
+}
+>>>>>>> origin/templates/home
