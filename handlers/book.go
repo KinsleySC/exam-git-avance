@@ -3,6 +3,8 @@ package handlers
 import (
 	"net/http"
     "main/data"
+	"html/template"
+	"strconv"
 )
 
 var books = []data.Book{
@@ -11,14 +13,42 @@ var books = []data.Book{
     {3, "The Pragmatic Programmer", "Andrew Hunt", 1999},
 }
 
-func HomeHandler(w http.ResponseWriter, r *http.Request) {
-    return
-}
-
 func BookHandler(w http.ResponseWriter, r *http.Request) {
-    return
+    idStr := r.URL.Query().Get("id")
+
+    if idStr == "" {
+        http.Error(w, "ID requis", http.StatusBadRequest)
+        return
+    }
+
+    id, err := strconv.Atoi(idStr)
+    if err != nil {
+        http.Error(w, "ID invalide", http.StatusBadRequest)
+        return
+    }
+
+    var selected *data.Book
+    for _, b := range books {
+        if b.ID == id {
+            selected = &b
+        }
+    }
+
+    if selected == nil {
+        http.Error(w, "Livre introuvable", http.StatusNotFound)
+        return
+    }
+
+    tmpl := template.Must(template.ParseFiles("templates/book.html"))
+    tmpl.Execute(w, selected)
 }
 
 func ContactHandler(w http.ResponseWriter, r *http.Request) {
-    return
+    tmpl := template.Must(template.ParseFiles("templates/contact.html"))
+    tmpl.Execute(w, nil)
+}
+
+func HomeHandler(w http.ResponseWriter, r *http.Request) {
+    tmpl := template.Must(template.ParseFiles("templates/home.html"))
+    tmpl.Execute(w, books)
 }
