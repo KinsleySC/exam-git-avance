@@ -3,7 +3,6 @@ package main
 import (
 	"log"
 	"main/handlers"
-	"main/server"
 	"net/http"
 )
 
